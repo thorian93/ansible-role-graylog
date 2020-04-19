@@ -1,0 +1,23 @@
+---
+
+- name: "systemd dameon-reload"
+  systemd:
+    daemon_reload: yes
+
+- name: "restart elasticsearch"
+  service:
+    name: "elasticsearch"
+    state: "restarted"
+    enabled: "yes"
+
+- name: "restart graylog-server"
+  service:
+    name: "graylog-server"
+    state: "restarted"
+    enabled: "yes"
+
+- name: "restart mongod"
+  service:
+    name: "mongod"
+    state: "restarted"
+    enabled: "yes"

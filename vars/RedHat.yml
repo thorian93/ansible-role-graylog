@@ -1,0 +1,25 @@
+---
+graylog_prerequisites:
+  - apt-transport-https
+  - default-jre-headless
+  #- openjdk-8-jre-headless
+  - uuid-runtime
+  - pwgen
+  - dirmngr
+  - python-pymongo
+
+graylog_download_repo_file: https://packages.graylog2.org/repo/packages/graylog-3.2-repository_latest.rpm
+
+graylog_server_defaults_file_path:    "/etc/sysconfig/graylog-server"
+graylog_mongodb_data_path:            "/var/lib/mongo"
+graylog_mongodb_package_dependencies:
+  - "libselinux-python"
+graylog_java:                         "java-1.8.0-openjdk-headless.x86_64"
+
+graylog_es_repository:
+  - name:    "[elastic-{{ graylog_sidecar_es_version }}.x]"
+    baseurl: "https://artifacts.elastic.co/packages/{{ graylog_sidecar_es_version }}.x/yum"
+    description: "Elastic repository for {{ graylog_sidecar_es_version }}.x packages"
+    file: elastic.repo
+    gpgcheck: yes
+    gpgkey: "{{ graylog_sidecar_es_gpgkey }}"

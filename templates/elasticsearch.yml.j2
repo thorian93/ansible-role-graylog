@@ -1,0 +1,73 @@
+
+{% if graylog_es_config %}
+{{ graylog_es_config | to_nice_yaml }}
+{% endif %}
+
+{% if graylog_es_config['cluster.name'] is not defined %}
+cluster.name: {{ graylog_es_cluster_name }}
+{% endif %}
+
+{% if graylog_es_config['node.name'] is not defined %}
+node.name: {{inventory_hostname}}
+{% endif %}
+
+#################################### Paths ####################################
+{% if (graylog_es_minor_version is version('6.0.0', '<')) %}
+# Path to directory containing configuration (this file and logging.yml):
+path.conf: {{ graylog_es_conf_dir }}
+{% endif %}
+
+path.data: {{ graylog_es_data_dirs }}
+
+path.logs: {{ graylog_es_log_dir }}
+
+{% if graylog_es_path_repo is defined %}
+path.repo: {{ graylog_es_path_repo }}
+{% endif %}
+
+{% if graylog_es_action_auto_create_index == true %}
+action.auto_create_index: true
+{% elif not graylog_es_action_auto_create_index %}
+action.auto_create_index: false
+{% else %}
+action.auto_create_index: {{ graylog_es_action_auto_create_index }}
+{% endif %}
+
+{% if graylog_es_enable_xpack %}
+{% if not "security" in graylog_es_xpack_features %}
+xpack.security.enabled: false
+{% endif %}
+
+{% if not "monitoring" in graylog_es_xpack_features %}
+xpack.monitoring.enabled: false
+{% endif %}
+
+{% if not "alerting" in graylog_es_xpack_features %}
+xpack.watcher.enabled: false
+{% endif %}
+
+{% if not "ml" in graylog_es_xpack_features %}
+xpack.ml.enabled: false
+{% endif %}
+
+{% if not "graph" in graylog_es_xpack_features %}
+xpack.graph.enabled: false
+{% endif %}
+{% endif %}
+
+{% if graylog_es_mail_config is defined %}
+xpack.notification.email:
+  account:
+    {{ graylog_es_mail_config['account'] }}:
+      profile: {{ graylog_es_mail_config['profile'] }}
+      email_defaults:
+        from: {{ graylog_es_mail_config['from'] }}
+      smtp:
+        auth: {{ graylog_es_mail_config['require_auth'] }}
+        host: {{ graylog_es_mail_config['host'] }}
+        port: {{ graylog_es_mail_config['port'] }}
+        {% if graylog_es_mail_config['require_auth'] == true %}
+        user: {{ graylog_es_mail_config['user'] }}
+        password: {{ graylog_es_mail_config['pass'] }}
+        {% endif %}  
+{% endif %}

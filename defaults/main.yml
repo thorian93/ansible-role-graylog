@@ -1,0 +1,37 @@
+---
+# Support for OSes:
+graylog_stable_os:
+  - Debian 9
+  - Debian 10
+  - Ubuntu 16
+  - Ubuntu 18
+
+# Tunables - You can change the following variables to your preference
+# Elasticsearch
+graylog_tunable_server_heap_size:         "1G"
+graylog_tunable_es_heap_size:             "1g"
+graylog_tunable_es_cluster_name:          "graylog"
+graylog_tunable_es_jvm_custom_parameters: []
+
+# MongoDB
+graylog_tunable_mongodb_version:          "4.2"
+graylog_tunable_mongodb_featurecompatibilityversion: "4.0"
+
+# Graylog
+
+# Basic
+graylog_tunable_version:                  "3.2"
+graylog_tunable_http_bind_port:           "9000"
+graylog_tunable_http_bind_address:        "{{ ansible_default_ipv4.address }}"
+graylog_tunable_is_master:                "true"
+
+# Authentication
+graylog_tunable_password_secret:          []
+graylog_tunable_root_username:            "admin"
+graylog_tunable_root_password_sha2:       []
+graylog_tunable_root_email:               []
+graylog_tunable_root_timezone:            "UTC"
+
+# Proxy
+graylog_tunable_http_proxy_uri:           ""
+graylog_tunable_non_proxy_hosts:          ""
