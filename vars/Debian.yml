@@ -14,4 +14,4 @@ graylog_server_defaults_file_path: "/etc/default/graylog-server"
 graylog_mongodb_data_path:         "/var/lib/mongodb"
 graylog_java:                      "openjdk-8-jre-headless"
 
-graylog_es_repository:             "deb https://artifacts.elastic.co/packages/{{ graylog_es_version }}.x/apt stable main"
+graylog_es_repository:             "deb https://artifacts.elastic.co/packages/{% if graylog_es_oss %}oss-{% endif %}{{ graylog_es_version }}.x/apt stable main"

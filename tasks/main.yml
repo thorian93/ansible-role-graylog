@@ -15,5 +15,5 @@
     state: present
   loop: "{{ graylog_prerequisites }}"
 
-- name: Include OS Family specific Playbook
+- name: Include OS Family specific Playbook.
   include_tasks: "{{ ansible_os_family }}.yml"

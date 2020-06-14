@@ -8,6 +8,7 @@ graylog_stable_os:
 
 # Tunables - You can change the following variables to your preference
 # Elasticsearch
+graylog_tunable_es_oss:                   "true"
 graylog_tunable_server_heap_size:         "1G"
 graylog_tunable_es_heap_size:             "1g"
 graylog_tunable_es_cluster_name:          "graylog"
@@ -20,7 +21,7 @@ graylog_tunable_mongodb_featurecompatibilityversion: "4.0"
 # Graylog
 
 # Basic
-graylog_tunable_version:                  "3.2"
+graylog_tunable_version:                  "3.3"
 graylog_tunable_http_bind_port:           "9000"
 graylog_tunable_http_bind_address:        "{{ ansible_default_ipv4.address }}"
 graylog_tunable_is_master:                "true"

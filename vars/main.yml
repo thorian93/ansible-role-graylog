@@ -17,6 +17,7 @@ graylog_es_heap_size: "{{ graylog_tunable_es_heap_size | default('1g') }}"
 graylog_es_gpgkey: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
 graylog_es_major_version: "{{ graylog_es_version }}.x"
 graylog_es_minor_version: "{{ graylog_es_version }}.0.0"
+graylog_es_oss: "{{ graylog_tunable_es_oss | default('true') }}"
 graylog_es_enable_xpack: false
 graylog_es_user: elasticsearch
 graylog_es_group: elasticsearch
@@ -30,7 +31,7 @@ graylog_es_home:         "/usr/share/elasticsearch"
 graylog_es_pid_dir:      "/var/run/elasticsearch"
 graylog_es_data_dirs:    "/var/lib/elasticsearch"
 graylog_es_log_dir:      "/var/log/elasticsearch"
-graylog_es_action_auto_create_index: true
+graylog_es_action_auto_create_index: false # Per Graylog Documentation
 graylog_es_max_open_files: 65536
 graylog_es_xpack_features: ["alerting","monitoring","graph","ml","security"]
 
